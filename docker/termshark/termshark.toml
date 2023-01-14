@@ -1,0 +1,7 @@
+[main]
+color-tsharks = ['/usr/bin/tshark']
+last-used-tshark = '/usr/bin/tshark'
+recent-files = ['/root/bf-sde-9.9.0/ptf.pcap']
+term = 'xterm-256color'
+validated-tsharks = ['/usr/bin/tshark']
+

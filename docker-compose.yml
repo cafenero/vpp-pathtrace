@@ -1,0 +1,50 @@
+version: '3'
+services:
+  dev:
+    build: docker
+    privileged: true
+    image: vpp-pathtrace
+    container_name: vpp-pathtrace
+    networks:
+      - net01
+      - net02
+      - net03
+      - net04
+    command: /sbin/init
+    # expose:
+    #   - "3000"
+    # ports:
+    #   - "0.0.0.0:3000:3000"
+    tty: true
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/24
+  net01:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.0.0/24
+  net02:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.1.0/24
+  net03:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.2.0/24
+  net04:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.3.0/24
