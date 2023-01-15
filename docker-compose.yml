@@ -1,20 +1,31 @@
 version: '3'
 services:
-  dev:
+  dev1:
     build: docker
     privileged: true
     image: vpp-pathtrace
-    container_name: vpp-pathtrace
+    container_name: vpp-pathtrace-dev1
     networks:
       - net01
       - net02
+      - net05
+    command: /sbin/init
+    volumes:
+      - ./docker/setup.conf:/root/setup.conf
+    tty: true
+
+  dev2:
+    build: docker
+    privileged: true
+    image: vpp-pathtrace
+    container_name: vpp-pathtrace-dev2
+    networks:
       - net03
       - net04
+      - net05
     command: /sbin/init
-    # expose:
-    #   - "3000"
-    # ports:
-    #   - "0.0.0.0:3000:3000"
+    volumes:
+      - ./docker/setup2.conf:/root/setup.conf
     tty: true
 
 networks:
@@ -48,3 +59,9 @@ networks:
       driver: default
       config:
         - subnet: 10.10.3.0/24
+  net05:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.4.0/24
